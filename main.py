@@ -4,6 +4,10 @@ from datetime import datetime, timedelta
 from cpf_cnpj import Documento
 from telefones import Telefones
 from datas import Datas
+from acesso_cep import BuscaEndereço
+
+# Para utilizar a API
+import requests
 
 # AREA CPF
 # exemplo_cpf = '50555075869'
@@ -21,6 +25,15 @@ from datas import Datas
 # print(telefone_objeto.format_numero())
 
 # AREA DATAS
-cadastro = Datas()
+# cadastro = Datas()
 
-print(cadastro.tempo_cadastro())
+# print(cadastro.tempo_cadastro())
+
+# AREA CEP
+cep = '06850150'
+objeto_cep = BuscaEndereço(cep)
+
+
+# API PARA CEP
+a = objeto_cep.acessa_via_cep()
+print(a)
