@@ -3,13 +3,13 @@ from validate_docbr import CPF, CNPJ
 
 class Documento:
     @staticmethod
-    def cria_documento(documento):
+    def cria_documento(documento, lista_erros):
         if len(documento) == 11:
             return DocCpf(documento)
         elif len(documento) == 14:
             return DocCnpj(documento)
         else:
-            raise ValueError('A quantidade de digitos está incorreta')
+           lista_erros['cpf'] = 'A quantidade de digitos está incorreta'
 
 
 class DocCpf:
@@ -17,7 +17,7 @@ class DocCpf:
         if self.valida(documento):
             self.cpf = documento
         else:
-            raise ValueError('CPF inválido!')
+            return 'CPF inválido!'
 
     def __str__(self):
         return self.format()
@@ -36,7 +36,7 @@ class DocCnpj:
         if self.valida(documento):
             self.cnpj = documento
         else:
-            raise ValueError('CNPJ inválido!')
+            return 'CNPJ inválido!'
 
     def __str__(self):
         return self.format()
